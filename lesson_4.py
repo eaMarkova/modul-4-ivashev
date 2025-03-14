@@ -4,8 +4,12 @@ class Stack:
     def __init__(self):
         self.items = []
 
+    #Шаг 2: Метод is_empty
+
     def is_empty(self):
         return len(self.items) == 0
+    
+    #Метод push
 
     def push(self, item):
         self.items.append(item)
@@ -16,13 +20,15 @@ class Stack:
             return self.items.pop()
         else:
             raise IndexError("Стек пуст")
-
+        
+    # Шаг 5: Метод peek
     def peek(self):
         if not self.is_empty():
-            return self.items[-1]
+            return self.items[1]
         else:
             raise IndexError("Стек пуст")
-
+        
+    #Метод size
     def size(self):
         return len(self.items)
     
