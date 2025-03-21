@@ -63,33 +63,35 @@ class Stack:
         return len(self.items)
     
 
+def proverka(s):
+    stacks = Stack()
+    is_good = True
 
-skob = input()
-stacks = Stack()
-is_good = True
+    for i in s:
+        if i in '({[':
+            stacks.push(i)
 
-for i in skob:
-    if i in '({[':
-        stacks.push(i)
+        if i in ')}]':
+            if stacks.is_empty() == True:
+                is_good = False
+                break
 
-    if i in ')}]':
-        if stacks.is_empty() == True:
+            obg = stacks.peek()
+            stacks.pop()
+            if obg == '(' and i == ')':
+                continue
+            if obg == '{' and i == '}':
+                continue
+            if obg == '[' and i == ']':
+                continue
             is_good = False
             break
-
-        obg = stacks.peek()
-        stacks.pop()
-        if obg == '(' and i == ')':
-            continue
-        if obg == '{' and i == '}':
-            continue
-        if obg == '[' and i == ']':
-            continue
-        is_good = False
-        break
         
-if is_good and stacks.is_empty() == True:
-    print('YES')
-else:
-    print('NO')
+    if is_good and stacks.is_empty() == True:
+        return 'YES'
+    else:
+        return 'NO'
 
+    
+skob = input()
+print(proverka(skob))
